@@ -23,11 +23,11 @@
       <div>
         <div>
           <label htmlFor="minutes">Minutes</label>
-          <input value={inverted ? Math.round(amount * 600)/10 : amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={inverted} />
+          <input value={inverted ? Math.round(amount * 600) / 10 : amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={inverted} />
         </div>
         <div>
           <label htmlFor="hours">Hours</label>
-          <input value={inverted ? amount : Math.round(amount / 6)/10} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={!inverted} />
+          <input value={inverted ? amount : Math.round(amount / 6) / 10} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={!inverted} />
         </div>
         <button onClick={reset}>Reset</button>
         <button onClick={onFlip}>Flip</button>
@@ -35,19 +35,31 @@
     );
   }
   function KmToMiles() {
-    const [value, setValue] = React.useState();
+    const [value, setValue] = React.useState(0);
+    const [inverted, setInverted] = React.useState(false);
     const onChange = (event) => {
       setValue(event.target.value);
+    }
+    const reset = () => {
+      setValue(0);
+    }
+    const onFlip = () => {
+      setInverted(current => !current);
+      reset();
     }
     return (
       <div>
         <div>
           <label htmlFor="km">Kilometers</label>
-          <input id="km" placeholder="Kilometers" type="number" onChange={onChange}></input>
+          <input id="km" value={inverted ? Math.round(value / 0.0621371) / 10 : value} placeholder="Kilometers" type="number" onChange={onChange} disabled={inverted}></input>
         </div>
         <div>
           <label htmlFor="mile">Miles</label>
-          <input id="mile" placeholder="Miles" type="number" onChange={onChange}></input>
+          <input id="mile" value={inverted ? value : Math.round(value * 6.21371) / 10} placeholder="Miles" type="number" onChange={onChange} disabled={!inverted}></input>
+        </div>
+        <div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>Flip</button>
         </div>
       </div>
     );
