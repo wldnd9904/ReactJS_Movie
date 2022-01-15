@@ -6,9 +6,9 @@ import Cointracker from "./Cointracker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
     <hr />
-    <Todolist />
+    {/* <Todolist /> */}
     <hr />
     <Cointracker />
   </React.StrictMode>,
