@@ -7,7 +7,7 @@ function App() {
   const onChange = (event) => setKeyword(event.target.value);
   console.log("i run all the time");
   useEffect(() => {
-    console.log("CALL THE API....");
+    console.log("CALL THE API.... ");
   }, []);
   useEffect(() => {
     if (keyword.length > 5) console.log("SEARCH FOR", keyword);
