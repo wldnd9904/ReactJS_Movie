@@ -24,7 +24,7 @@ function Home() {
       ) : (
         <div>
           {movies.map((movie) => (
-            <Movie key={movie.id} movie={movie} />
+            <Movie key={movie.id} id={movie.id}, movie={movie} />
           ))}
         </div>
       )}
