@@ -5,7 +5,9 @@ function Movie({ id, movie }) {
     <div key={movie.id}>
       <img src={movie.medium_cover_image} alt="img" />
       <h2>
-        <Link to="/movie">{movie.title}</Link>
+        <nav>
+          <Link to={`/movie/${id}`}>{movie.title}</Link>
+        </nav>
       </h2>
       <p>{movie.summary}</p>
       {movie.hasOwnProperty("genres") ? (

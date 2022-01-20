@@ -13,7 +13,6 @@ function Home() {
     setMovies(json.data.movies);
     setLoading(false);
   };
-  console.log(movies);
   useEffect(() => {
     getMovies();
   }, []);
@@ -24,7 +23,7 @@ function Home() {
       ) : (
         <div>
           {movies.map((movie) => (
-            <Movie key={movie.id} id={movie.id}, movie={movie} />
+            <Movie key={movie.id} id={movie.id} movie={movie} />
           ))}
         </div>
       )}
