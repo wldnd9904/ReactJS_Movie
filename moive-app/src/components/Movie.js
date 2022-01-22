@@ -1,33 +1,23 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./Movie.module.css";
 
-function Movie({ index }) {
-  const [movie, setMovie] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const getMovie = async () => {
-    const json = await (
-      await fetch(
-        `https://yts.mx/api/v2/list_movies.json?limit=1&page=${index}`
-      )
-    ).json();
-    setMovie(json.data.movies[0]);
-    setIsLoading(false);
-  };
-  useEffect(() => {
-    getMovie();
-  }, []);
+function Movie({ id, image, title }) {
   return (
-    <div className={styles.movieBox} key={index}>
-      {isLoading ? null : (
-        <nav>
-          <Link to={`/movie/${movie.id}`}>
-            <img src={movie.medium_cover_image} alt={movie.title} />
-          </Link>
-        </nav>
-      )}
+    <div className={styles.movieBox} key={id}>
+      <nav>
+        <Link to={`/movie/${id}`}>
+          <img src={image} alt={title} width="230" height="345" />
+        </Link>
+      </nav>
     </div>
   );
 }
+
+Movie.propTypes = {
+  id: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default Movie;
