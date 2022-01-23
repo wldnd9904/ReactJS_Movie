@@ -10,11 +10,22 @@ function Detail() {
     const json = await (
       await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
     ).json();
+    setDetail(json.data.movie);
+    setIsLoading(false);
   };
   useEffect(() => {
     getMovie();
   }, []);
-  return <h1>Detail</h1>;
+  return isLoading ? null : (
+    <div
+      style={{
+        backgroundImage: `url(${detail.background_image})`,
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <img src={detail.large_cover_image} /> {detail.title}
+    </div>
+  );
 }
 
 export default Detail;
